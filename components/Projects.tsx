@@ -28,34 +28,34 @@ const projects = [
 
 export default function Projects() {
   const cardStyle = [
-    "block group border border-stone-200 rounded-lg p-8",
+    "block group border border-blue-200 rounded-lg p-8",
     "transition-all duration-300",
-    "hover:border-stone-400 hover:shadow-lg",
+    "hover:border-blue-400 hover:shadow-lg bg-white",
   ].join(" ");
 
   const titleStyle = [
-    "text-xl font-semibold text-stone-900",
-    "group-hover:text-stone-600 transition-colors",
+    "text-xl font-semibold text-blue-700",
+    "group-hover:text-blue-600 transition-colors",
   ].join(" ");
 
   const tagStyle = [
-    "px-3 py-1 text-xs border border-stone-200",
-    "text-stone-400 rounded-full",
+    "px-3 py-1 text-xs border border-blue-200",
+    "text-blue-600 rounded-full",
   ].join(" ");
 
   const arrowStyle = [
-    "text-stone-300 group-hover:text-stone-500",
+    "text-blue-300 group-hover:text-blue-500",
     "text-xl transition-colors shrink-0",
   ].join(" ");
 
   return (
-    <section id="projects" className="py-24 px-8 max-w-4xl mx-auto">
+    <section id="projects" className="py-24 px-8 max-w-4xl mx-auto bg-white">
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="text-sm uppercase tracking-widest text-stone-400 mb-2"
+        className="text-sm uppercase tracking-widest text-blue-400 mb-2"
       >
         Work
       </motion.p>
@@ -64,7 +64,7 @@ export default function Projects() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="text-3xl font-bold text-stone-900 mb-12"
+        className="text-3xl font-bold text-blue-600 mb-12"
       >
         Featured Projects
       </motion.h2>
@@ -83,7 +83,7 @@ export default function Projects() {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <h3 className={titleStyle}>{project.title}</h3>
-                <p className="mt-2 text-stone-500 leading-relaxed">
+                <p className="mt-2 text-blue-600 leading-relaxed">
                   {project.description}
                 </p>
                 <div className="mt-4 flex flex-wrap gap-2">

@@ -6,20 +6,20 @@ const links = [
 
 export default function Contact() {
   const pillStyle = [
-    "px-5 py-2.5 border border-stone-200 text-sm text-stone-600",
+    "px-5 py-2.5 border border-blue-200 text-sm text-blue-600",
     "rounded-full transition-all duration-300",
-    "hover:border-stone-400 hover:text-stone-900",
+    "hover:border-blue-400 hover:text-blue-700",
   ].join(" ");
 
   return (
-    <section id="contact" className="py-24 px-8 max-w-4xl mx-auto text-center">
-      <p className="text-sm uppercase tracking-widest text-stone-400 mb-2">
+    <section id="contact" className="py-24 px-8 max-w-4xl mx-auto text-center bg-white">
+      <p className="text-sm uppercase tracking-widest text-blue-400 mb-2">
         Contact
       </p>
-      <h2 className="text-3xl font-bold text-stone-900 mb-4">
+      <h2 className="text-3xl font-bold text-blue-600 mb-4">
         Let's work together
       </h2>
-      <p className="text-stone-500 max-w-md mx-auto mb-10 leading-relaxed">
+      <p className="text-blue-600 max-w-md mx-auto mb-10 leading-relaxed">
         I'm always open to new opportunities and interesting
         conversations. Feel free to reach out.
       </p>

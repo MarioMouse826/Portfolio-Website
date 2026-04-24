@@ -1,13 +1,13 @@
 export default function About() {
   return (
-    <section id="about" className="py-24 px-8 max-w-4xl mx-auto">
-      <p className="text-sm uppercase tracking-widest text-stone-400 mb-2">
+    <section id="about" className="py-24 px-8 max-w-4xl mx-auto bg-white">
+      <p className="text-sm uppercase tracking-widest text-blue-400 mb-2">
         About
       </p>
-      <h2 className="text-3xl font-bold text-stone-900 mb-8">
+      <h2 className="text-3xl font-bold text-blue-600 mb-8">
         A little about me
       </h2>
-      <div className="space-y-4 text-stone-600 leading-relaxed">
+      <div className="space-y-4 text-blue-600 leading-relaxed">
         <p>
           I'm a software engineer who enjoys turning complex problems into
           simple, elegant solutions. I care deeply about writing clean code
@@ -25,7 +25,7 @@ export default function About() {
           (skill) => (
             <span
               key={skill}
-              className="px-4 py-1.5 text-sm border border-stone-200 text-stone-500 rounded-full"
+              className="px-4 py-1.5 text-sm border border-blue-200 text-blue-600 rounded-full"
             >
               {skill}
             </span>
