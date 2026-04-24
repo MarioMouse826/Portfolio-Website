@@ -34,42 +34,13 @@ export default function CV() {
 
   return (
     <section id="cv" className="py-24 px-8 max-w-7xl mx-auto bg-white">
-      {/* Header */}
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="text-sm uppercase tracking-widest text-blue-400 mb-2"
-      >
-        Documents
-      </motion.p>
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        className="text-4xl font-bold text-blue-600 mb-4"
-      >
-        Resume & CV
-      </motion.h2>
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className="text-blue-500 mb-12 text-base max-w-2xl"
-      >
-        Download or view my professional documents. Click to expand and see my resume or full CV.
-      </motion.p>
-
       {/* Button Container */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.3 }}
-        className="flex gap-4 mb-8 flex-wrap"
+        className="flex gap-4 mb-8 flex-wrap justify-center"
       >
         <button
           onClick={toggleResume}
