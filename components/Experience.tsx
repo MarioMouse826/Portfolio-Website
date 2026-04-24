@@ -145,133 +145,177 @@ export default function Experience() {
         details about the experience, including descriptions and skills gained.
       </motion.p>
 
-      {/* Horizontal Timeline Container */}
-      <div className="relative">
-        {/* Horizontal line */}
-        <div 
-          className="absolute left-0 right-0 h-0.5"
-          style={{
-            top: "24px",
-            backgroundImage: "repeating-linear-gradient(to right, #bfdbfe 0px, #bfdbfe 2px, transparent 2px, transparent 8px)",
-          }}
-        />
-
-        {/* Timeline dots and cards */}
-        <div className="relative pt-20 pb-8">
-          <div className="flex justify-between gap-4 overflow-x-auto pb-4">
-            {sortedAndValidatedMilestones.map((milestone, index) => {
-              const isActive = active === index;
-
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="flex flex-col items-center flex-shrink-0 w-64"
+      {/* Bounded Dashboard Container */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="border-2 border-blue-200 rounded-2xl p-12 bg-gradient-to-br from-blue-50 to-white"
+      >
+        {/* Timeline with SVG lines connecting dots */}
+        <div className="relative">
+          {/* SVG for connecting lines */}
+          <svg
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            style={{ zIndex: 1 }}
+          >
+            {sortedAndValidatedMilestones.length > 1 && (
+              <defs>
+                <pattern
+                  id="dashline"
+                  x="0"
+                  y="0"
+                  width="8"
+                  height="8"
+                  patternUnits="userSpaceOnUse"
                 >
-                  {/* Timeline dot */}
-                  <motion.button
-                    onClick={() => setActive(isActive ? null : index)}
-                    onHoverStart={() => setActive(index)}
-                    onHoverEnd={() => setActive(null)}
-                    className="w-12 h-12 rounded-full border-4 border-blue-200 bg-white flex items-center justify-center cursor-pointer transition-all z-20 relative"
-                    animate={{
-                      borderColor: isActive ? "#3b82f6" : "#bfdbfe",
-                      scale: isActive ? 1.2 : 1,
-                    }}
-                    whileHover={{
-                      borderColor: "#60a5fa",
-                      scale: 1.15,
-                    }}
-                    transition={{ duration: 0.3 }}
+                  <line
+                    x1="0"
+                    y1="0"
+                    x2="4"
+                    y2="0"
+                    stroke="#bfdbfe"
+                    strokeWidth="2"
+                  />
+                </pattern>
+              </defs>
+            )}
+            {/* Horizontal connecting line */}
+            {sortedAndValidatedMilestones.length > 1 && (
+              <line
+                x1="50"
+                y1="30"
+                x2="calc(100% - 50px)"
+                y2="30"
+                stroke="url(#dashline)"
+                strokeWidth="2"
+              />
+            )}
+          </svg>
+
+          {/* Timeline dots and cards */}
+          <div className="relative pt-16 pb-12">
+            <div className="flex justify-between gap-6 min-h-96">
+              {sortedAndValidatedMilestones.map((milestone, index) => {
+                const isActive = active === index;
+                const totalMilestones = sortedAndValidatedMilestones.length;
+                const dotPosition = totalMilestones > 1 
+                  ? (index / (totalMilestones - 1)) * 100 
+                  : 50;
+
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="flex flex-col items-center flex-shrink-0 flex-1"
                   >
-                    <motion.div
-                      className="w-3 h-3 rounded-full"
+                    {/* Timeline dot */}
+                    <motion.button
+                      onClick={() => setActive(isActive ? null : index)}
+                      onHoverStart={() => setActive(index)}
+                      onHoverEnd={() => setActive(null)}
+                      className="w-12 h-12 rounded-full border-4 border-blue-200 bg-white flex items-center justify-center cursor-pointer transition-all relative z-10 shadow-md"
                       animate={{
-                        backgroundColor: isActive ? "#3b82f6" : "#93c5fd",
+                        borderColor: isActive ? "#3b82f6" : "#bfdbfe",
+                        scale: isActive ? 1.3 : 1,
+                        boxShadow: isActive 
+                          ? "0 0 20px rgba(59, 130, 246, 0.5)" 
+                          : "0 2px 4px rgba(0, 0, 0, 0.1)",
+                      }}
+                      whileHover={{
+                        borderColor: "#60a5fa",
+                        scale: 1.2,
                       }}
                       transition={{ duration: 0.3 }}
-                    />
-                  </motion.button>
-
-                  {/* Date label below dot */}
-                  <div className="mt-4 text-center">
-                    <p className="text-xs font-semibold text-blue-500 uppercase tracking-wider">
-                      {milestone.startDate}
-                    </p>
-                  </div>
-
-                  {/* Expandable card below date */}
-                  <AnimatePresence>
-                    {isActive && (
+                    >
                       <motion.div
-                        initial={{ opacity: 0, scale: 0.9, y: -10 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.9, y: -10 }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
-                        className="mt-6 bg-white rounded-xl p-5 shadow-lg border border-blue-100 hover:shadow-xl transition-shadow w-full max-w-xs"
-                      >
-                        {/* Role and Company */}
-                        <h3 className="text-base font-bold text-blue-700">
-                          {milestone.role}
-                        </h3>
-                        <p className="text-xs text-blue-500 mt-1">
-                          {milestone.company}
-                        </p>
-                        <p className="text-xs text-blue-400 mt-1">
-                          {milestone.location}
-                        </p>
-
-                        {/* Date range */}
-                        <p className="text-xs text-blue-500 mt-2 font-medium">
-                          {milestone.startDate} — {milestone.endDate}
-                        </p>
-
-                        {/* Description */}
-                        <p className="text-xs text-blue-600 mt-3 leading-relaxed line-clamp-3">
-                          {milestone.description}
-                        </p>
-
-                        {/* Skills */}
-                        <div className="flex flex-wrap gap-1.5 mt-3">
-                          {milestone.skills.slice(0, 3).map((skill) => (
-                            <span key={skill} className={skillStyle}>
-                              {skill}
-                            </span>
-                          ))}
-                          {milestone.skills.length > 3 && (
-                            <span className="px-2 py-1 text-xs text-blue-600">
-                              +{milestone.skills.length - 3}
-                            </span>
-                          )}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-
-                  {/* Collapsed state - shows when not active */}
-                  <AnimatePresence>
-                    {!isActive && (
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
+                        className="w-3 h-3 rounded-full"
+                        animate={{
+                          backgroundColor: isActive ? "#3b82f6" : "#93c5fd",
+                        }}
                         transition={{ duration: 0.3 }}
-                        className="mt-6 text-center text-xs"
-                      >
-                        <p className="font-semibold text-blue-700">{milestone.role}</p>
-                        <p className="text-blue-500 text-xs mt-1">{milestone.company}</p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              );
-            })}
+                      />
+                    </motion.button>
+
+                    {/* Date label below dot */}
+                    <div className="mt-4 text-center min-h-10">
+                      <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider">
+                        {milestone.startDate}
+                      </p>
+                      <p className="text-xs text-blue-400 mt-0.5">
+                        to {milestone.endDate}
+                      </p>
+                    </div>
+
+                    {/* Expandable card below date */}
+                    <AnimatePresence>
+                      {isActive && (
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.85, y: -15 }}
+                          animate={{ opacity: 1, scale: 1, y: 0 }}
+                          exit={{ opacity: 0, scale: 0.85, y: -15 }}
+                          transition={{ duration: 0.3, ease: "easeOut" }}
+                          className="mt-6 bg-white rounded-xl p-5 shadow-xl border-2 border-blue-100 hover:shadow-2xl transition-shadow w-full"
+                        >
+                          {/* Role and Company */}
+                          <h3 className="text-base font-bold text-blue-700 line-clamp-2">
+                            {milestone.role}
+                          </h3>
+                          <p className="text-xs text-blue-600 mt-1 font-semibold">
+                            {milestone.company}
+                          </p>
+                          <p className="text-xs text-blue-500 mt-1">
+                            📍 {milestone.location}
+                          </p>
+
+                          {/* Description */}
+                          <p className="text-xs text-blue-600 mt-3 leading-relaxed line-clamp-4">
+                            {milestone.description}
+                          </p>
+
+                          {/* Skills */}
+                          <div className="flex flex-wrap gap-1.5 mt-3">
+                            {milestone.skills.slice(0, 4).map((skill) => (
+                              <span key={skill} className={skillStyle}>
+                                {skill}
+                              </span>
+                            ))}
+                            {milestone.skills.length > 4 && (
+                              <span className="px-2 py-1 text-xs text-blue-500 font-medium">
+                                +{milestone.skills.length - 4}
+                              </span>
+                            )}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    {/* Collapsed state - shows when not active */}
+                    <AnimatePresence>
+                      {!isActive && (
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="mt-6 text-center text-xs"
+                        >
+                          <p className="font-semibold text-blue-700 line-clamp-2">{milestone.role}</p>
+                          <p className="text-blue-500 text-xs mt-0.5 line-clamp-1">{milestone.company}</p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
