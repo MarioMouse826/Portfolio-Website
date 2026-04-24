@@ -88,19 +88,13 @@ export default function CV() {
               {/* PDF Viewer or Placeholder */}
               <div className="bg-white border border-blue-100 rounded-lg p-8 min-h-96 flex flex-col items-center justify-center">
                 <p className="text-blue-600 mb-4 font-semibold">📄 Resume Preview</p>
-                <p className="text-blue-500 text-sm mb-6 text-center max-w-md">
-                  Add your resume PDF here. You can embed it using an iframe or PDF viewer library.
-                </p>
 
-                {/* Placeholder for PDF - Replace with actual PDF viewer */}
-                <div className="w-full h-96 bg-gradient-to-b from-blue-50 to-blue-100 rounded-lg border border-blue-200 flex items-center justify-center">
-                  <div className="text-center">
-                    <p className="text-blue-600 font-semibold mb-2">PDF Viewer Coming Soon</p>
-                    <p className="text-blue-500 text-xs">
-                      Point to: /public/resume.pdf
-                    </p>
-                  </div>
-                </div>
+                {/* PDF Viewer using iframe */}
+                <iframe
+                  src="/resume.pdf#toolbar=0"
+                  className="w-full h-96 border border-blue-200 rounded-lg"
+                  title="Resume PDF Viewer"
+                />
 
                 {/* Download Button */}
                 <a
@@ -144,19 +138,13 @@ export default function CV() {
               {/* PDF Viewer or Placeholder */}
               <div className="bg-white border border-blue-100 rounded-lg p-8 min-h-96 flex flex-col items-center justify-center">
                 <p className="text-blue-600 mb-4 font-semibold">📋 CV Preview</p>
-                <p className="text-blue-500 text-sm mb-6 text-center max-w-md">
-                  Add your full CV PDF here. You can embed it using an iframe or PDF viewer library.
-                </p>
 
-                {/* Placeholder for PDF - Replace with actual PDF viewer */}
-                <div className="w-full h-96 bg-gradient-to-b from-blue-50 to-blue-100 rounded-lg border border-blue-200 flex items-center justify-center">
-                  <div className="text-center">
-                    <p className="text-blue-600 font-semibold mb-2">PDF Viewer Coming Soon</p>
-                    <p className="text-blue-500 text-xs">
-                      Point to: /public/cv.pdf
-                    </p>
-                  </div>
-                </div>
+                {/* PDF Viewer using iframe */}
+                <iframe
+                  src="/cv.pdf#toolbar=0"
+                  className="w-full h-96 border border-blue-200 rounded-lg"
+                  title="CV PDF Viewer"
+                />
 
                 {/* Download Button */}
                 <a
