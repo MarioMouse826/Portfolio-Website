@@ -86,13 +86,14 @@ export default function CV() {
               </div>
 
               {/* PDF Viewer or Placeholder */}
-              <div className="bg-white border border-blue-100 rounded-lg p-8 min-h-96 flex flex-col items-center justify-center">
+              <div className="bg-white border border-blue-100 rounded-lg p-8 flex flex-col items-center justify-center">
                 <p className="text-blue-600 mb-4 font-semibold">📄 Resume Preview</p>
 
-                {/* PDF Viewer using iframe */}
+                {/* PDF Viewer using iframe - Full height */}
                 <iframe
                   src="/resume.pdf#toolbar=0"
-                  className="w-full h-96 border border-blue-200 rounded-lg"
+                  className="w-full border border-blue-200 rounded-lg"
+                  style={{ height: "1000px" }}
                   title="Resume PDF Viewer"
                 />
 
@@ -136,13 +137,14 @@ export default function CV() {
               </div>
 
               {/* PDF Viewer or Placeholder */}
-              <div className="bg-white border border-blue-100 rounded-lg p-8 min-h-96 flex flex-col items-center justify-center">
+              <div className="bg-white border border-blue-100 rounded-lg p-8 flex flex-col items-center justify-center">
                 <p className="text-blue-600 mb-4 font-semibold">📋 CV Preview</p>
 
-                {/* PDF Viewer using iframe */}
+                {/* PDF Viewer using iframe - Full height */}
                 <iframe
                   src="/cv.pdf#toolbar=0"
-                  className="w-full h-96 border border-blue-200 rounded-lg"
+                  className="w-full border border-blue-200 rounded-lg"
+                  style={{ height: "1500px" }}
                   title="CV PDF Viewer"
                 />
 
